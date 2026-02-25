@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { mockCargos } from "@/data/mockData";
+import { mockCargos, Cargo } from "@/data/mockData";
+import { CargoDetail } from "@/components/CargoDetail";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ function StatusBadge({ status }: { status: string }) {
 const CargoList = () => {
   const [search, setSearch] = useState("");
   const [vehicleFilter, setVehicleFilter] = useState("all");
+  const [selectedCargo, setSelectedCargo] = useState<Cargo | null>(null);
 
   const filtered = mockCargos.filter((c) => {
     const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -78,7 +80,7 @@ const CargoList = () => {
       {/* Cargo cards */}
       <div className="space-y-3">
         {filtered.map((cargo) => (
-          <Card key={cargo.id} className="card-hover cursor-pointer">
+          <Card key={cargo.id} className="card-hover cursor-pointer" onClick={() => setSelectedCargo(cargo)}>
             <CardContent className="p-4">
               <div className="flex flex-col md:flex-row md:items-center gap-4">
                 {/* Route */}
@@ -141,6 +143,12 @@ const CargoList = () => {
           </Card>
         ))}
       </div>
+
+      <CargoDetail
+        cargo={selectedCargo}
+        open={!!selectedCargo}
+        onOpenChange={(open) => !open && setSelectedCargo(null)}
+      />
     </div>
   );
 };

@@ -65,7 +65,11 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-3 border-t border-sidebar-border">
-        <div className="flex items-center gap-3 px-2">
+        <NavLink
+          to="/profilis"
+          className="flex items-center gap-3 px-2 rounded-lg hover:bg-sidebar-accent transition-colors py-2"
+          activeClassName="bg-sidebar-accent"
+        >
           <div className="w-8 h-8 rounded-full bg-sidebar-accent flex items-center justify-center">
             <User className="w-4 h-4 text-sidebar-accent-foreground" />
           </div>
@@ -73,7 +77,7 @@ export function AppSidebar() {
             <p className="text-sm font-medium text-sidebar-accent-foreground truncate">Jonas P.</p>
             <p className="text-[11px] text-sidebar-muted truncate">UAB Logistika</p>
           </div>
-        </div>
+        </NavLink>
       </SidebarFooter>
     </Sidebar>
   );

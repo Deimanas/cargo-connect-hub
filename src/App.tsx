@@ -10,6 +10,7 @@ import NewCargo from "./pages/NewCargo";
 import Transport from "./pages/Transport";
 import MapView from "./pages/MapView";
 import Messages from "./pages/Messages";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/transportas" element={<Transport />} />
             <Route path="/zemelapis" element={<MapView />} />
             <Route path="/zinutes" element={<Messages />} />
+            <Route path="/profilis" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
