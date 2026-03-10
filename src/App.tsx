@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
 import Index from "./pages/Index";
 import CargoList from "./pages/CargoList";
+import CargoDetailPage from "./pages/CargoDetailPage";
 import NewCargo from "./pages/NewCargo";
 import Transport from "./pages/Transport";
 import MapView from "./pages/MapView";
