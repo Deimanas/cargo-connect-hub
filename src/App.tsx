@@ -26,6 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/kroviniai" element={<CargoList />} />
+            <Route path="/kroviniai/:id" element={<CargoDetailPage />} />
             <Route path="/naujas-krovinys" element={<NewCargo />} />
             <Route path="/transportas" element={<Transport />} />
             <Route path="/zemelapis" element={<MapView />} />

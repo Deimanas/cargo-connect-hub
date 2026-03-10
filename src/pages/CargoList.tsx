@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { mockCargos, Cargo } from "@/data/mockData";
-import { CargoDetail } from "@/components/CargoDetail";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
+import { mockCargos } from "@/data/mockData";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, ArrowRight, Clock, MapPin, Package } from "lucide-react";
+import { Search, Filter, ArrowRight, Clock, Package } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function StatusBadge({ status }: { status: string }) {
@@ -24,7 +24,7 @@ function StatusBadge({ status }: { status: string }) {
 const CargoList = () => {
   const [search, setSearch] = useState("");
   const [vehicleFilter, setVehicleFilter] = useState("all");
-  const [selectedCargo, setSelectedCargo] = useState<Cargo | null>(null);
+  const navigate = useNavigate();
 
   const filtered = mockCargos.filter((c) => {
     const matchSearch = c.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,7 +41,7 @@ const CargoList = () => {
           <h1 className="text-2xl font-bold">Kroviniai</h1>
           <p className="text-muted-foreground text-sm mt-1">{filtered.length} krovinių rasta</p>
         </div>
-        <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => window.location.href = "/naujas-krovinys"}>
+        <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => navigate("/naujas-krovinys")}>
           <Package className="w-4 h-4 mr-2" /> Naujas krovinys
         </Button>
       </div>
@@ -80,10 +80,9 @@ const CargoList = () => {
       {/* Cargo cards */}
       <div className="space-y-3">
         {filtered.map((cargo) => (
-          <Card key={cargo.id} className="card-hover cursor-pointer" onClick={() => setSelectedCargo(cargo)}>
+          <Card key={cargo.id} className="card-hover cursor-pointer" onClick={() => navigate(`/kroviniai/${cargo.id}`)}>
             <CardContent className="p-4">
               <div className="flex flex-col md:flex-row md:items-center gap-4">
-                {/* Route */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold">{cargo.title}</h3>
@@ -106,7 +105,6 @@ const CargoList = () => {
                   <p className="text-xs text-muted-foreground mt-1">{cargo.company}</p>
                 </div>
 
-                {/* Details */}
                 <div className="flex items-center gap-6 text-sm">
                   <div className="text-center">
                     <p className="text-xs text-muted-foreground">Svoris</p>
@@ -135,20 +133,14 @@ const CargoList = () => {
                   </div>
                 </div>
 
-                <Button variant="outline" size="sm">
-                  Siūlyti transportą
+                <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); navigate(`/kroviniai/${cargo.id}`); }}>
+                  Peržiūrėti
                 </Button>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
-
-      <CargoDetail
-        cargo={selectedCargo}
-        open={!!selectedCargo}
-        onOpenChange={(open) => !open && setSelectedCargo(null)}
-      />
     </div>
   );
 };
