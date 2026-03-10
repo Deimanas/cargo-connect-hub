@@ -3,11 +3,14 @@ export interface Cargo {
   title: string;
   from: string;
   fromCountry: string;
+  fromAddress?: string;
   to: string;
   toCountry: string;
+  toAddress?: string;
   weight: number;
   volume?: number;
   price?: number;
+  pricePerKm?: number;
   vehicleType: string;
   loadDate: string;
   unloadDate: string;
@@ -17,6 +20,25 @@ export interface Cargo {
   description?: string;
   fromCoords?: [number, number];
   toCoords?: [number, number];
+  // Extended fields
+  loadType?: string; // "FTL" | "LTL" | "Grupažas"
+  dimensions?: { length?: number; width?: number; height?: number };
+  pallets?: number;
+  adr?: string;
+  temperatureRange?: string;
+  paymentTerm?: string;
+  paymentDays?: number;
+  contactPerson?: string;
+  contactPhone?: string;
+  contactEmail?: string;
+  createdAt?: string;
+  views?: number;
+  offers?: number;
+  cargoType?: string;
+  stackable?: boolean;
+  customs?: boolean;
+  cmr?: boolean;
+  notes?: string;
 }
 
 export interface TransportOffer {
