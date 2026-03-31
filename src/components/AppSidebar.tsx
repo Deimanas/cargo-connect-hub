@@ -74,7 +74,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-3 border-t border-sidebar-border">
+      <SidebarFooter className="p-3 border-t border-sidebar-border space-y-2">
         <NavLink
           to="/profilis"
           className="flex items-center gap-3 px-2 rounded-lg hover:bg-sidebar-accent transition-colors py-2"
@@ -84,10 +84,19 @@ export function AppSidebar() {
             <User className="w-4 h-4 text-sidebar-accent-foreground" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-accent-foreground truncate">Jonas P.</p>
-            <p className="text-[11px] text-sidebar-muted truncate">UAB Logistika</p>
+            <p className="text-sm font-medium text-sidebar-accent-foreground truncate">
+              {user?.user_metadata?.full_name || user?.email || "Vartotojas"}
+            </p>
+            <p className="text-[11px] text-sidebar-muted truncate">{user?.email}</p>
           </div>
         </NavLink>
+        <button
+          onClick={handleSignOut}
+          className="flex items-center gap-3 px-2 py-2 rounded-lg text-sidebar-foreground hover:bg-destructive/10 hover:text-destructive transition-colors w-full text-sm"
+        >
+          <LogOut className="w-4 h-4 shrink-0" />
+          <span>Atsijungti</span>
+        </button>
       </SidebarFooter>
     </Sidebar>
   );
