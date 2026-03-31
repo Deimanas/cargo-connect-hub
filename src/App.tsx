@@ -43,6 +43,7 @@ const App = () => (
                       <Route path="/zemelapis" element={<MapView />} />
                       <Route path="/zinutes" element={<Messages />} />
                       <Route path="/profilis" element={<Profile />} />
+                      <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </AppLayout>
