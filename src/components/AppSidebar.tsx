@@ -25,6 +25,14 @@ const mainNav = [
 ];
 
 export function AppSidebar() {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/prisijungti");
+  };
+
   return (
     <Sidebar className="border-r-0">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
