@@ -14,6 +14,7 @@ import Transport from "./pages/Transport";
 import MapView from "./pages/MapView";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
