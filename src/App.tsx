@@ -14,6 +14,7 @@ import Transport from "./pages/Transport";
 import MapView from "./pages/MapView";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -42,6 +43,7 @@ const App = () => (
                       <Route path="/zemelapis" element={<MapView />} />
                       <Route path="/zinutes" element={<Messages />} />
                       <Route path="/profilis" element={<Profile />} />
+                      <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </AppLayout>

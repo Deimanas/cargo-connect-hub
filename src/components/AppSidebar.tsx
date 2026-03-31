@@ -1,4 +1,4 @@
-import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, Search, User, LogOut } from "lucide-react";
+import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, Search, User, LogOut, Shield } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const mainNav = [
   { title: "Transportas", url: "/transportas", icon: Truck },
   { title: "Žemėlapis", url: "/zemelapis", icon: Map },
   { title: "Žinutės", url: "/zinutes", icon: MessageSquare },
+  { title: "Administravimas", url: "/admin", icon: Shield },
 ];
 
 export function AppSidebar() {
