@@ -1,5 +1,7 @@
 import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, Search, User, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
