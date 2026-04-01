@@ -1,4 +1,4 @@
-import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, Search, User, LogOut, Shield } from "lucide-react";
+import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, User, LogOut, Shield } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
