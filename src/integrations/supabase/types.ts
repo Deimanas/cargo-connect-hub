@@ -14,16 +14,226 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cargo: {
+        Row: {
+          cargo_type: string | null
+          company_id: string | null
+          created_at: string
+          currency: string | null
+          delivery_address: string
+          delivery_city: string | null
+          delivery_country: string | null
+          delivery_date: string | null
+          description: string | null
+          id: string
+          is_adr: boolean | null
+          pallet_count: number | null
+          pickup_address: string
+          pickup_city: string | null
+          pickup_country: string | null
+          pickup_date: string | null
+          price: number | null
+          status: string
+          temperature_controlled: boolean | null
+          title: string
+          updated_at: string
+          user_id: string
+          volume: number | null
+          weight: number | null
+        }
+        Insert: {
+          cargo_type?: string | null
+          company_id?: string | null
+          created_at?: string
+          currency?: string | null
+          delivery_address: string
+          delivery_city?: string | null
+          delivery_country?: string | null
+          delivery_date?: string | null
+          description?: string | null
+          id?: string
+          is_adr?: boolean | null
+          pallet_count?: number | null
+          pickup_address: string
+          pickup_city?: string | null
+          pickup_country?: string | null
+          pickup_date?: string | null
+          price?: number | null
+          status?: string
+          temperature_controlled?: boolean | null
+          title: string
+          updated_at?: string
+          user_id: string
+          volume?: number | null
+          weight?: number | null
+        }
+        Update: {
+          cargo_type?: string | null
+          company_id?: string | null
+          created_at?: string
+          currency?: string | null
+          delivery_address?: string
+          delivery_city?: string | null
+          delivery_country?: string | null
+          delivery_date?: string | null
+          description?: string | null
+          id?: string
+          is_adr?: boolean | null
+          pallet_count?: number | null
+          pickup_address?: string
+          pickup_city?: string | null
+          pickup_country?: string | null
+          pickup_date?: string | null
+          price?: number | null
+          status?: string
+          temperature_controlled?: boolean | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+          volume?: number | null
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cargo_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      companies: {
+        Row: {
+          address: string | null
+          city: string | null
+          code: string | null
+          country: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          status: string
+          updated_at: string
+          vat_code: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          code?: string | null
+          country?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          vat_code?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          code?: string | null
+          country?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          vat_code?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          company_id: string | null
+          created_at: string
+          first_name: string | null
+          id: string
+          is_suspended: boolean
+          last_name: string | null
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          company_id?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          is_suspended?: boolean
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          company_id?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          is_suspended?: boolean
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_profiles_company"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +360,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
