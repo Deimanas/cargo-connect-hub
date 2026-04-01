@@ -1,8 +1,8 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
-export function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { session, loading } = useAuth();
+export function ProtectedRoute({ children, adminOnly = false }: { children: React.ReactNode; adminOnly?: boolean }) {
+  const { session, loading, isAdmin } = useAuth();
 
   if (loading) {
     return (
@@ -14,6 +14,10 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (!session) {
     return <Navigate to="/prisijungti" replace />;
+  }
+
+  if (adminOnly && !isAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;

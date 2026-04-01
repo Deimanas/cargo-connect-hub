@@ -15,6 +15,9 @@ import MapView from "./pages/MapView";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminCompanies from "./pages/admin/AdminCompanies";
+import AdminCargo from "./pages/admin/AdminCargo";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -44,6 +47,9 @@ const App = () => (
                       <Route path="/zinutes" element={<Messages />} />
                       <Route path="/profilis" element={<Profile />} />
                       <Route path="/admin" element={<Admin />} />
+                      <Route path="/admin/vartotojai" element={<AdminUsers />} />
+                      <Route path="/admin/imones" element={<AdminCompanies />} />
+                      <Route path="/admin/kroviniai" element={<AdminCargo />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </AppLayout>
