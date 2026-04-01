@@ -1,4 +1,4 @@
-import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, Search, User, LogOut, Shield } from "lucide-react";
+import { Truck, Package, Map, MessageSquare, Plus, LayoutDashboard, User, LogOut, Shield } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -22,11 +22,10 @@ const mainNav = [
   { title: "Transportas", url: "/transportas", icon: Truck },
   { title: "Žemėlapis", url: "/zemelapis", icon: Map },
   { title: "Žinutės", url: "/zinutes", icon: MessageSquare },
-  { title: "Administravimas", url: "/admin", icon: Shield },
 ];
 
 export function AppSidebar() {
-  const { user, signOut } = useAuth();
+  const { user, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -70,6 +69,20 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              {isAdmin && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to="/admin"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors text-sm"
+                      activeClassName="bg-sidebar-accent text-sidebar-primary font-semibold"
+                    >
+                      <Shield className="w-4 h-4 shrink-0" />
+                      <span>Administravimas</span>
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
