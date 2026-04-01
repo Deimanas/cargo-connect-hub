@@ -22,11 +22,10 @@ const mainNav = [
   { title: "Transportas", url: "/transportas", icon: Truck },
   { title: "Žemėlapis", url: "/zemelapis", icon: Map },
   { title: "Žinutės", url: "/zinutes", icon: MessageSquare },
-  { title: "Administravimas", url: "/admin", icon: Shield },
 ];
 
 export function AppSidebar() {
-  const { user, signOut } = useAuth();
+  const { user, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
